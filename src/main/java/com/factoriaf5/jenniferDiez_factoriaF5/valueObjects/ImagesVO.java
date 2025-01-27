@@ -1,26 +1,25 @@
 package com.factoriaf5.jenniferDiez_factoriaF5.valueObjects;
 
-import org.springframework.data.annotation.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "images")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ImagesVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Size(min = 1)
 	private String title;
-	@Size(min = 1)
 	private String url;
 }

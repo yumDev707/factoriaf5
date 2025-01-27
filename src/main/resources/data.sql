@@ -1,0 +1,2 @@
+DELETE FROM images;
+ALTER TABLE images AUTO_INCREMENT = 0;

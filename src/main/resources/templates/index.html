@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security3">
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security3">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola Mundo</title>
+    <title>Galería de Imágenes</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Hola Mundo</h1>
-    <section class='images' th:each="img : ${totalImages}">
-    	<img th:src="'../images/gallery/' + ${img.url}">
-    	<h2 th:text="${img.title}"></h2>
-    </section>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Galería de Imágenes</h1>
+        
+        <div th:replace="~{components/addImage :: addImage}"></div>
+
+        <div class="row">
+            <section class="images col-12 col-sm-6 col-md-3 mb-4" th:each="img : ${totalImages}">
+                <div class="">
+                    <div class="card">
+                        <img class="card-img-top" th:src="'../images/gallery/' + ${img.url}" alt="Imagen">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${img.title}"></h5>
+                            <p class="card-text">Descripción o detalles de la imagen.</p>
+                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

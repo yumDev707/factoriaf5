@@ -3,16 +3,12 @@ package com.factoriaf5.jenniferDiez_factoriaF5.controllers;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.factoriaf5.jenniferDiez_factoriaF5.services.ImagesService;
@@ -25,7 +21,7 @@ public class IndexController {
 	@Autowired
 	ImagesService imgSrv;
 	
-	@RequestMapping("")
+	@GetMapping("")
 	public String index(Model model) {
 		List<ImagesVO> totalImages = imgSrv.findAll();
 		model.addAttribute("totalImages", totalImages);
@@ -52,5 +48,11 @@ public class IndexController {
 	    }
 
 	    return "redirect:/index";
+	}
+	
+	@RequestMapping("/deleteImage")
+	public String deleteImage(@RequestParam int id) {
+		imgSrv.delete(imgSrv.findById(id).get());
+		return "redirect:/index";
 	}
 }

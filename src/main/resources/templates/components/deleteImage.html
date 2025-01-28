@@ -33,9 +33,9 @@
     <!-- Script para actualizar el enlace con la ID dinámica -->
     <script>
         const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-        const buttons = document.querySelectorAll('[data-target="#deleteModal"]');
+        const deleteButtons = document.querySelectorAll('[data-target="#deleteModal"]');
 
-        for(let i of buttons) {
+        for(let i of deleteButtons) {
         	i.addEventListener('click', (event) => {
         		const imageId = i.getAttribute('data-id');
 	            confirmDeleteBtn.setAttribute('href', `/index/deleteImage?id=${imageId}`);

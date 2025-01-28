@@ -20,13 +20,14 @@
                         <img class="card-img-top" th:src="'../images/gallery/' + ${img.url}" alt="Imagen">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${img.title}"></h5>
-                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal" th:attr="data-id=${img.id}">Editar</button>
                             <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${img.id}">Eliminar</button>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
+        <div th:replace="~{components/editImage :: editImage}"></div>
         <div th:replace="~{components/deleteImage :: deleteImage}"></div>
     </div>
 

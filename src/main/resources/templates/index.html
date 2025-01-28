@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security3">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mundo</title>
+</head>
+<body>
+    <h1>Hola Mundo</h1>
+    <section class='images' th:each="img : ${totalImages}">
+    	<img th:src="'../images/gallery/' + ${img.url}">
+    	<h2 th:text="${img.title}"></h2>
+    </section>
+</body>
+</html>

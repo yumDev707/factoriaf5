@@ -28,35 +28,33 @@ class JenniferDiezFactoriaF5ApplicationTests {
 	
 	@Test
 	public void test01_voidImagesList() {
-		assertEquals(0, imgServices.count());
+		assertEquals(3, imgServices.count());
 	}
 
 	@Test
 	public void test02_saveImage() {
-		ImagesVO img = new ImagesVO(1, "Title", "URL");
+		ImagesVO img = new ImagesVO(4, "Title", "URL");
 		imgServices.save(img);
-		assertEquals(1, imgServices.count());
+		assertEquals(4, imgServices.count());
 		
-		Optional<ImagesVO> savedImage = imgServices.findById(1);
+		Optional<ImagesVO> savedImage = imgServices.findById(4);
 	    assertEquals("Title", savedImage.get().getTitle());
 	    assertNotEquals("False URL", savedImage.get().getUrl());
 	}
 	
 	@Test
 	public void test03_imagesList() {
-		imgServices.save(new ImagesVO(22, "Second Title", "Second URL"));
-		assertEquals(2, imgServices.count());
+		imgServices.save(new ImagesVO(5, "Second Title", "Second URL"));
+		assertEquals(5, imgServices.count());
 	}
 	
 	@Test
 	public void test04_editImage() {
-		Optional<ImagesVO> img = imgServices.findById(1);
+		Optional<ImagesVO> img = imgServices.findById(4);
 		if(img.isPresent()) {
 			img.get().setTitle("New title");
 			img.get().setUrl("New url");
 			imgServices.update(img);
-		} else {
-			System.out.println("asdf");
 		}
 		
 		assertEquals("New title", img.get().getTitle());
@@ -65,8 +63,8 @@ class JenniferDiezFactoriaF5ApplicationTests {
 	
 	@Test
 	public void test05_deleteImage() {
-		Optional<ImagesVO> img = imgServices.findById(2);
+		Optional<ImagesVO> img = imgServices.findById(5);
 	    imgServices.delete(img.get());
-	    assertEquals(1, imgServices.count());	
+	    assertEquals(4, imgServices.count());	
 	}
 }

@@ -74,17 +74,12 @@
 		<dependency>
 		    <groupId>jakarta.persistence</groupId>
 		    <artifactId>jakarta.persistence-api</artifactId>
-		    <version>3.1.0</version> <!-- O la versión que necesites -->
+		    <version>3.1.0</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-core</artifactId>
-		    <version>6.2.5.Final</version> <!-- Verifica la versión más reciente -->
-		</dependency>
-		<dependency>
-			<groupId>com.dawes</groupId>
-			<artifactId>jenniferDiez_proyecto</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+		    <version>6.2.5.Final</version>
 		</dependency>
 	</dependencies>
 
@@ -95,6 +90,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	            <filtering>false</filtering>
+	        </resource>
+    	</resources>
 	</build>
 
 </project>

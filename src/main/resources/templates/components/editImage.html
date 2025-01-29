@@ -34,22 +34,4 @@
             </div>
         </div>
     </div>
-
-	<script>
-	    document.addEventListener('DOMContentLoaded', () => {
-	        const editModal = document.getElementById('editModal');
-	        const editButtons = document.querySelectorAll('[data-target="#editModal"]');
-	        
-	        editButtons.forEach(button => {
-	            button.addEventListener('click', () => {
-	                const imageId = button.getAttribute('data-id');
-	                const title = button.getAttribute('data-title');
-	                const url = button.getAttribute('data-url');
-	                
-	                editModal.querySelector('input[name="id"]').value = imageId;
-	                editModal.querySelector('input[name="url"]').setAttribute('value', url);
-	            });
-	        });
-	    });
-	</script>
 </body>

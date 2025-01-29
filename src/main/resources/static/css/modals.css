@@ -1,0 +1,10 @@
+div.modal-header,
+div.modal-body,
+div.modal-footer {
+	border: none;
+}
+
+div.modal-header,
+div.modal-body {
+	padding: 1rem 1rem;
+}

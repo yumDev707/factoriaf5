@@ -1,0 +1,40 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300&display=swap');
+
+:root{
+	--title-color: #f39f43;
+	--buttons-text: white;
+	--buttons-color: #6693d3;
+	--buttons-hover: #3b629b;
+	
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to left, #F9B872, #FAE7A5, #72B3F9);
+    font-family: 'Radio Canada';
+    font-size: 1rem;
+}
+
+.container.mt-5 {
+    background-color: #ffffffbd;
+    padding: 2rem;
+    border-radius: 25px;
+    
+}
+
+h1.title {
+	color: var(--title-color);
+}
+
+.container.mt-5 > h1.title::before,
+.container.mt-5 > h1.title::after {
+    	display: inline-block;
+	    content: "";
+	    border-top: 1px solid var(--title-color);
+	    width: 5vw;
+	    margin: 0 1rem;
+	    transform: translateY(-8px);
+}

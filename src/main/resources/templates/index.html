@@ -1,16 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security3">
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security3">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola Mundo</title>
+    <title>Mi galería</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/basics.css}">
+    <link rel="stylesheet" th:href="@{/css/buttons.css}">
+    <link rel="stylesheet" th:href="@{/css/card.css}">
+    <link rel="stylesheet" th:href="@{/css/modals.css}">
 </head>
 <body>
-    <h1>Hola Mundo</h1>
-    <section class='images' th:each="img : ${totalImages}">
-    	<img th:src="'../images/gallery/' + ${img.url}">
-    	<h2 th:text="${img.title}"></h2>
-    </section>
+	<div class="container mt-5">
+        <h1 class="title text-center mb-3">Mi galería</h1>
+        
+        <div th:replace="~{components/addImage :: addImage}"></div>
+
+        <div class="row">
+            <section class="images col-12 col-sm-6 col-md-3 mb-3" th:each="img : ${totalImages}">
+                <div class="">
+                    <div class="card">
+                    	<div class="img-container">
+	                        <img class="card-img-top" th:src="'../images/gallery/' + ${img.url}" alt="Imagen">
+                    	</div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${img.title}"></h5>
+                            <div class="btn-container">
+                            	<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal" th:attr="data-id=${img.id}">Editar</button>
+                            	<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${img.id}">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div th:replace="~{components/editImage :: editImage}"></div>
+        <div th:replace="~{components/deleteImage :: deleteImage}"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

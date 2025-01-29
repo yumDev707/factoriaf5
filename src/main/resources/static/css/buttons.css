@@ -1,0 +1,16 @@
+.btn,
+.btn:focus {
+	background-color: var(--buttons-color);
+	color: var(--buttons-text);
+	border-radius: 5px;
+	box-shadow: none !important;
+    border: none !important;
+    border-color: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.btn:hover {
+  background-color: var(--buttons-hover);
+  color: var(--buttons-text) !important;
+}

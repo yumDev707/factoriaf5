@@ -27,11 +27,17 @@ public class IndexController {
 	
 	@GetMapping("")
 	public String index(Model model) {
-		List<ImagesVO> totalImages = imgSrv.findAll();
-		model.addAttribute("totalImages", totalImages);
-		
-		model.addAttribute("image", new ImagesVO());
-		return "index";
+		try {
+			List<ImagesVO> totalImages = imgSrv.findAll();
+			model.addAttribute("totalImages", totalImages);
+			
+			model.addAttribute("image", new ImagesVO());
+			return "index";
+			
+		} catch (Exception e) {
+	        e.printStackTrace();
+	        return "redirect:/index?error=true";
+	    }
 	}
 
 	@PostMapping("/addImage")
@@ -44,12 +50,13 @@ public class IndexController {
 	            img.setUrl(fileName);
 	        }
 	        imgSrv.save(img);
-	    } catch (IOException e) {
+	        Thread.sleep(500);
+		    return "redirect:/index";
+	        
+	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return "redirect:/index?error=true";
 	    }
-
-	    return "redirect:/index";
 	}
 	
 	@RequestMapping("/deleteImage")
@@ -57,6 +64,7 @@ public class IndexController {
 		ImagesVO img = imgSrv.findById(id).get();
 		String imgPath = directory + img.getUrl();
 		File imageFile = new File(imgPath);
+		
 		try {
 			if(imageFile.exists()) {
 				imageFile.delete();
@@ -64,17 +72,26 @@ public class IndexController {
 				System.out.println("Error deleting image in the folder.");
 			}
 			imgSrv.delete(imgSrv.findById(id).get());
-		} catch (Exception e) {
+		    return "redirect:/index";
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+	        return "redirect:/index?error=true";
 		}
-		return "redirect:/index";
 	}
 	
 	@PostMapping("/editImage")
 	public String editImage(@ModelAttribute ImagesVO img, @RequestParam("imageFile") MultipartFile imageFile) {
 	    try {
-	        ImagesVO existingImage = imgSrv.findById(img.getId()).orElseThrow(() -> new IllegalArgumentException("Imagen no encontrada"));
+	        ImagesVO existingImage = imgSrv.findById(img.getId())
+	        		.orElseThrow(() -> new IllegalArgumentException("Image not found"));
+	        
 	        if (!imageFile.isEmpty()) {
+	        	if (existingImage.getUrl() != null) {
+	                Path oldFilePath = Paths.get(directory, existingImage.getUrl());
+	                Files.deleteIfExists(oldFilePath);
+	            }
+	        	
 	            String fileName = imageFile.getOriginalFilename();
 	            Path filePath = Paths.get(directory, fileName);
 	            Files.write(filePath, imageFile.getBytes());
@@ -86,12 +103,12 @@ public class IndexController {
 	        }
 
 	        imgSrv.save(existingImage);
+	        Thread.sleep(500);
+	        return "redirect:/index";
 	        
-	    } catch (IOException e) {
+	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return "redirect:/index?error=true";
 	    }
-	    return "redirect:/index";
 	}
-
 }

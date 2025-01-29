@@ -48,9 +48,9 @@ public class ImagesServiceImp implements ImagesService {
 	public <S extends ImagesVO> S save(S entity) {
 		try {
 			return imgRep.save(entity);
-		}catch (PersistenceException e) {
+		} catch (PersistenceException e) {
 			if(e.getCause() instanceof DataException)
-				System.out.println("Error saving the image: asdf");
+				System.out.println("Error saving the image: data inconsistency");
 			
 			else if(e.getCause() instanceof ConstraintViolationException)
 				System.out.println("Error saving the image: duplicate key");

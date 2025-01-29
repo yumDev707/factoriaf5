@@ -1,8 +1,8 @@
 .row {
-	justify-content: flex-start;
+	justify-content: space-between;
 	max-width: 1073px;
     margin-left: 2px;
-	gap: 1em;
+	gap: 3em;
 	
 	section.images {
 		min-width: 270px;
